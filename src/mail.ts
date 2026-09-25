@@ -34,6 +34,9 @@ async function withInbox<T>(account: MailAccount, password: string, operation: (
     auth: { user: account.email, pass: password },
     logger: false,
     disableAutoIdle: true,
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 20_000,
   });
   await client.connect();
   try {
@@ -56,6 +59,9 @@ export async function verifyMailbox(account: Pick<MailAccount, "email" | "imap_h
     auth: { user: account.email, pass: password },
     logger: false,
     disableAutoIdle: true,
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 20_000,
   });
   await client.connect();
   await client.logout().catch(() => undefined);
@@ -70,6 +76,9 @@ export async function verifySender(account: Pick<MailAccount, "email" | "smtp_ho
     disableFileAccess: true,
     disableUrlAccess: true,
     logger: false,
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 20_000,
   });
   try {
     await transport.verify();
@@ -142,6 +151,9 @@ export async function sendMail(
     disableFileAccess: true,
     disableUrlAccess: true,
     logger: false,
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 20_000,
   });
   try {
     const result = await transport.sendMail({ from: account.email, to: input.to, subject: input.subject, text: input.text });

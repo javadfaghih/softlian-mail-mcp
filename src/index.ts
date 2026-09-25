@@ -125,8 +125,10 @@ function createServer() {
     if (!hasScope("mail:read") && !hasScope("mail:send")) return error("This connection has no mail permission.");
     const userId = getMcpAuthContext()?.props?.userId;
     if (typeof userId !== "string") return error("Connect your mailbox first.");
-    await workerEnv.DB.prepare("DELETE FROM mail_accounts WHERE user_id = ?").bind(userId).run();
-    await workerEnv.DB.prepare("DELETE FROM send_limits WHERE user_id = ?").bind(userId).run();
+    await workerEnv.DB.batch([
+      workerEnv.DB.prepare("DELETE FROM mail_accounts WHERE user_id = ?").bind(userId),
+      workerEnv.DB.prepare("DELETE FROM send_limits WHERE user_id = ?").bind(userId),
+    ]);
     return result({ removed: true });
   });
 

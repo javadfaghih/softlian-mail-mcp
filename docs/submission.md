@@ -11,20 +11,22 @@ The publisher must verify `softlian.com` in the OpenAI developer portal and plac
 
 ## Positive test cases
 
-1. Connect the test mailbox with its address, IMAP host, SMTP host, and app password. The client completes OAuth and sees the five MCP tools.
-2. Ask for the latest five inbox messages. `list_mail` returns at most five summaries, newest first, without bodies.
-3. Search for a known subject. `search_mail` returns matching inbox message summaries.
-4. Read one returned UID. `get_mail` returns its plain-text content and attachment presence without HTML or attachment bytes.
-5. Draft a message to the review mailbox. After the reviewer explicitly approves the displayed recipient, subject, and body, `send_mail` submits it and reports the SMTP response.
-6. Ask to remove the mailbox and approve the action. `remove_mailbox` deletes the saved connection; subsequent mail calls fail until the mailbox is connected again.
+Use a dedicated reviewer mailbox with these fixtures: at least five inbox messages; one message with the subject `Softlian review fixture`; one plain-text message with a known body; and an address that can receive a test message. Supply its credentials privately in the portal.
+
+1. **Prompt:** “Connect my review mailbox.” **Expected:** The OAuth page requests email, IMAP host, SMTP host, and app password. After valid input, the client connects and discovers all five tools. **Fixture:** Reviewer mailbox credentials.
+2. **Prompt:** “Show my five newest emails.” **Expected:** `list_mail` returns a `messages` array with no more than five items, ordered newest first; each item has `uid`, `subject`, `from`, `date`, and `seen`, with no body. **Fixture:** At least five inbox messages.
+3. **Prompt:** “Find emails with the subject Softlian review fixture.” **Expected:** `search_mail` returns matching summaries in `messages`. **Fixture:** A message with that subject.
+4. **Prompt:** “Read the first message from that search.” **Expected:** `get_mail` returns a `message` with its UID, headers, plain text, and `hasAttachments` flag; no HTML or attachment bytes. **Fixture:** A matching plain-text message.
+5. **Prompt:** “Write a short test email to the review address and show it to me before sending.” **Expected:** The assistant displays the exact recipient, subject, and body, waits for the reviewer's explicit approval, then `send_mail` returns `status: submitted`, `messageId`, `accepted`, and `rejected`. **Fixture:** Review mailbox and receiving address.
+6. **Prompt:** “Remove the mailbox connection.” **Expected:** After explicit approval, `remove_mailbox` returns `removed: true`; later mail tools report that the mailbox must be reconnected. **Fixture:** Connected reviewer mailbox.
 
 ## Negative test cases
 
-1. Search with no filters. The tool rejects the request without contacting IMAP.
-2. Attempt to send without the required `mail:send` scope or without an explicit user approval. The operation must be refused.
-3. Enter an invalid app password on the connection page. The server refuses to store the mailbox and does not finish OAuth.
-4. Request an unknown UID. `get_mail` reports that the message was not found.
-5. Attempt to exceed five recipients, the 20,000-character body limit, or the daily send limit. The operation fails.
+1. **Scenario:** “Search my mail” without any search filter. **Expected:** The assistant asks for a filter, or `search_mail` returns an error without contacting IMAP. **Why:** An unbounded search is not supported.
+2. **Scenario:** “Send this now” when the recipient, subject, or full body has not been shown and approved. **Expected:** The assistant asks for explicit approval before calling `send_mail`. **Why:** Sending is an irreversible external action.
+3. **Scenario:** Enter a wrong app password in the OAuth form. **Expected:** The form reports a connection failure and OAuth does not complete. **Why:** Invalid mailbox credentials must not be stored or authorized.
+4. **Scenario:** Read a UID absent from the inbox. **Expected:** `get_mail` returns “Message not found.” **Why:** The requested message does not exist.
+5. **Scenario:** Send to six recipients or with a body over 20,000 characters. **Expected:** Input validation rejects the call. **Why:** Tool limits are explicit and should be enforced before SMTP.
 
 ## Before pressing Submit
 
