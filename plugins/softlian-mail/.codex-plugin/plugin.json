@@ -21,7 +21,9 @@
     "privacyPolicyURL": "https://mcp.softlian.com/privacy",
     "termsOfServiceURL": "https://mcp.softlian.com/terms",
     "defaultPrompt": ["Summarize my latest emails.", "Find emails about a project.", "Draft a reply for my approval."],
-    "brandColor": "#155EEF"
+    "brandColor": "#155EEF",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png"
   },
   "mcpServers": "./.mcp.json"
 }
