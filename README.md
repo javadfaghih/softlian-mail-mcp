@@ -1,6 +1,6 @@
-# Softlian Mail
+# SMPT Mail Plugin
 
-Softlian Mail is a remote Model Context Protocol (MCP) server and Codex plugin for an email account you control. It reads and searches an IMAP inbox and sends plain-text email through SMTP. The public endpoint is intended to be `https://mcp.softlian.com/mail`.
+SMPT Mail Plugin by Softlian is a remote Model Context Protocol (MCP) server and Codex plugin for an email account you control. It reads and searches an IMAP inbox and sends plain-text email through SMTP. The public endpoint is intended to be `https://mcp.softlian.com/mail`.
 
 ## Connect a mailbox
 
@@ -35,6 +35,6 @@ App passwords are encrypted with AES-256-GCM using `CREDENTIAL_KEY` before D1 st
 
 ## Publishing
 
-The plugin manifest is at `plugins/softlian-mail/.codex-plugin/plugin.json` and the repo marketplace is at `.agents/plugins/marketplace.json`. The OpenAI submission test plan is in `docs/submission.md`. Public publication and review require a live HTTPS endpoint, verified publisher identity, working legal and support URLs, and a reviewer mailbox with app-password access.
+The plugin manifest is at `plugins/smpt-mail-plugin/.codex-plugin/plugin.json` and the repo marketplace is at `.agents/plugins/marketplace.json`. The OpenAI submission test plan is in `docs/submission.md`. Public publication and review require a live HTTPS endpoint, verified publisher identity, working legal and support URLs, and a reviewer mailbox with app-password access.
 
 Licensed under MIT. See `LICENSE`.

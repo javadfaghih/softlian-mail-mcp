@@ -5,10 +5,10 @@
   },
   "plugins": [
     {
-      "name": "softlian-mail",
+      "name": "smpt-mail-plugin",
       "source": {
         "source": "local",
-        "path": "./plugins/softlian-mail"
+        "path": "./plugins/smpt-mail-plugin"
       },
       "policy": {
         "installation": "AVAILABLE",

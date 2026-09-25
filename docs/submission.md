@@ -1,6 +1,6 @@
 # OpenAI review preparation
 
-App name: **Softlian Mail**  
+App name: **SMPT Mail Plugin**  
 MCP URL: `https://mcp.softlian.com/mail`  
 Website: `https://mcp.softlian.com/`  
 Privacy: `https://mcp.softlian.com/privacy`  

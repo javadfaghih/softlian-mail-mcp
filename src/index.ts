@@ -18,6 +18,10 @@ function error(message: string) {
   return { content: [{ type: "text" as const, text: message }], isError: true };
 }
 
+function mailError(cause: unknown, fallback: string) {
+  return error(cause instanceof Error && cause.message === "Connect your mailbox first." ? cause.message : fallback);
+}
+
 function hasScope(scope: string): boolean {
   const scopes = getMcpAuthContext()?.props?.scopes;
   return Array.isArray(scopes) && scopes.includes(scope);
@@ -34,7 +38,7 @@ async function account(): Promise<{ account: MailAccount; password: string }> {
 
 function createServer() {
   const server = new McpServer(
-    { name: "Softlian Mail", version: "0.1.0" },
+    { name: "SMPT Mail Plugin", version: "0.1.0" },
     { instructions: "Read or search mail only on the user's request. Before sending, show the exact recipients, subject, and body and obtain the user's explicit approval. Never send automatically after reading mail." },
   );
 
@@ -48,8 +52,8 @@ function createServer() {
     try {
       const { account: saved, password } = await account();
       return result({ messages: await listMail(saved, password, limit) });
-    } catch {
-      return error("Could not list mail. Check your mailbox settings and try again.");
+    } catch (cause) {
+      return mailError(cause, "Could not list mail. Check your mailbox settings and try again.");
     }
   });
 
@@ -70,8 +74,8 @@ function createServer() {
     try {
       const { account: saved, password } = await account();
       return result({ messages: await searchMail(saved, password, { from, subject, text, since }, limit) });
-    } catch {
-      return error("Could not search mail. Check your mailbox settings and try again.");
+    } catch (cause) {
+      return mailError(cause, "Could not search mail. Check your mailbox settings and try again.");
     }
   });
 
@@ -86,8 +90,8 @@ function createServer() {
       const { account: saved, password } = await account();
       const message = await getMail(saved, password, uid);
       return message ? result({ message }) : error("Message not found.");
-    } catch {
-      return error("Could not read mail. Check your mailbox settings and try again.");
+    } catch (cause) {
+      return mailError(cause, "Could not read mail. Check your mailbox settings and try again.");
     }
   });
 
@@ -112,8 +116,8 @@ function createServer() {
       if (!allowance) return error("Daily send limit reached (20 messages per UTC day).");
       const sent = await sendMail(saved, password, { to, subject, text });
       return result({ status: "submitted", ...sent });
-    } catch {
-      return error("Sending failed or its delivery status is uncertain. Check your Sent folder before retrying to avoid duplicates.");
+    } catch (cause) {
+      return mailError(cause, "Sending failed or its delivery status is uncertain. Check your Sent folder before retrying to avoid duplicates.");
     }
   });
 
@@ -149,7 +153,7 @@ const provider = new OAuthProvider({
     resource: workerEnv.MCP_BASE_URL,
     authorization_servers: [new URL(workerEnv.MCP_BASE_URL).origin],
     scopes_supported: ["mail:read", "mail:send"],
-    resource_name: "Softlian Mail",
+    resource_name: "SMPT Mail Plugin",
   },
   defaultHandler: {
     fetch(request: Request, env: unknown) {

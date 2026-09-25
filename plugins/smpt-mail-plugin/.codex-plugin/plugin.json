@@ -1,5 +1,5 @@
 {
-  "name": "softlian-mail",
+  "name": "smpt-mail-plugin",
   "version": "0.1.0",
   "description": "Read, search, and send email through your own IMAP and SMTP account.",
   "author": {
@@ -11,7 +11,7 @@
   "license": "MIT",
   "keywords": ["email", "imap", "smtp", "mcp"],
   "interface": {
-    "displayName": "Softlian Mail",
+    "displayName": "SMPT Mail Plugin",
     "shortDescription": "Read, find, and send your email.",
     "longDescription": "Connect an IMAP and SMTP mailbox with an app password. Read and search messages, and send email with your approval.",
     "developerName": "Softlian",

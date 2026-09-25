@@ -10,9 +10,9 @@
   "vars": { "MCP_BASE_URL": "https://mcp.softlian.com/mail" },
   "routes": [{ "pattern": "mcp.softlian.com", "custom_domain": true }],
   "kv_namespaces": [
-    { "binding": "OAUTH_KV", "id": "8984c06edee0422f935a2c43d659ac88" }
+    { "binding": "OAUTH_KV", "id": "b8ac473ee43b4ea3a0a3f0d01ca0549a" }
   ],
   "d1_databases": [
-    { "binding": "DB", "database_name": "mailbridge", "database_id": "9be38f0f-6043-4c19-8f04-3232e85178e9", "migrations_dir": "migrations" }
+    { "binding": "DB", "database_name": "softlian-mail", "database_id": "c4441134-f5f8-479e-9af5-d378d2649d95", "migrations_dir": "migrations" }
   ]
 }

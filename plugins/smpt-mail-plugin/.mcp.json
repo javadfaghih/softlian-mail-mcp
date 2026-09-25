@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "softlian-mail": {
+    "smpt-mail-plugin": {
       "type": "http",
       "url": "https://mcp.softlian.com/mail"
     }
