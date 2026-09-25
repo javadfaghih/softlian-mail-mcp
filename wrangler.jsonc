@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "softlian-mail-mcp",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-25",
+  "compatibility_flags": ["global_fetch_strictly_public"],
+  "workers_dev": true,
+  "observability": { "enabled": true },
+  "triggers": { "crons": ["17 4 * * *"] },
+  "vars": { "MCP_BASE_URL": "https://mcp.softlian.com/mail" },
+  "routes": [{ "pattern": "mcp.softlian.com", "custom_domain": true }],
+  "kv_namespaces": [
+    { "binding": "OAUTH_KV", "id": "8984c06edee0422f935a2c43d659ac88" }
+  ],
+  "d1_databases": [
+    { "binding": "DB", "database_name": "mailbridge", "database_id": "9be38f0f-6043-4c19-8f04-3232e85178e9", "migrations_dir": "migrations" }
+  ]
+}

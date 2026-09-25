@@ -1,0 +1,27 @@
+{
+  "name": "softlian-mail",
+  "version": "0.1.0",
+  "description": "Read, search, and send email through your own IMAP and SMTP account.",
+  "author": {
+    "name": "Softlian",
+    "url": "https://softlian.com"
+  },
+  "homepage": "https://mcp.softlian.com/",
+  "repository": "https://github.com/javadfaghih/softlian-mail-mcp",
+  "license": "MIT",
+  "keywords": ["email", "imap", "smtp", "mcp"],
+  "interface": {
+    "displayName": "Softlian Mail",
+    "shortDescription": "Read, find, and send your email.",
+    "longDescription": "Connect an IMAP and SMTP mailbox with an app password. Read and search messages, and send email with your approval.",
+    "developerName": "Softlian",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://mcp.softlian.com/",
+    "privacyPolicyURL": "https://mcp.softlian.com/privacy",
+    "termsOfServiceURL": "https://mcp.softlian.com/terms",
+    "defaultPrompt": ["Summarize my latest emails.", "Find emails about a project.", "Draft a reply for my approval."],
+    "brandColor": "#155EEF"
+  },
+  "mcpServers": "./.mcp.json"
+}
