@@ -1,6 +1,7 @@
 # OpenAI review preparation
 
-App name: **SMPT Mail Plugin**  
+App name: **Bussines Mail SMTP/IMAP**
+
 MCP URL: `https://mcp.softlian.com/mail`  
 Website: `https://mcp.softlian.com/`  
 Privacy: `https://mcp.softlian.com/privacy`  

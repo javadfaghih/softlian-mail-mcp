@@ -1,26 +1,38 @@
 {
   "name": "smpt-mail-plugin",
-  "version": "0.1.0",
+  "version": "0.2.0+codex.20260926055158",
   "description": "Read, search, and send email through your own IMAP and SMTP account.",
   "author": {
     "name": "Ahmad Faghih",
     "url": "https://softlian.com"
   },
   "homepage": "https://mcp.softlian.com/",
-  "repository": "https://github.com/javadfaghih/softlian-mail-mcp",
-  "license": "MIT",
-  "keywords": ["email", "imap", "smtp", "mcp"],
+  "repository": "https://github.com/javadfaghih/bussines-mail-plugin-for-ai-agent",
+  "license": "LicenseRef-Bussines-Mail-No-AI-Submission-1.0",
+  "keywords": [
+    "email",
+    "imap",
+    "smtp",
+    "mcp"
+  ],
   "interface": {
-    "displayName": "SMPT Mail Plugin",
+    "displayName": "Bussines Mail SMTP/IMAP",
     "shortDescription": "Read, find, and send your email.",
     "longDescription": "Connect an IMAP and SMTP mailbox with an app password. Read and search messages, and send email with your approval.",
     "developerName": "Ahmad Faghih",
     "category": "Productivity",
-    "capabilities": ["Read", "Write"],
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
     "websiteURL": "https://mcp.softlian.com/",
     "privacyPolicyURL": "https://mcp.softlian.com/privacy",
     "termsOfServiceURL": "https://mcp.softlian.com/terms",
-    "defaultPrompt": ["Summarize my latest emails.", "Find emails about a project.", "Draft a reply for my approval."],
+    "defaultPrompt": [
+      "Summarize my latest emails.",
+      "Find emails about a project.",
+      "Draft a reply for my approval."
+    ],
     "brandColor": "#155EEF",
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/logo.png"

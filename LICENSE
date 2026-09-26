@@ -1,21 +1,82 @@
-MIT License
+Bussines Mail Source-Available License 1.0
+License identifier: LicenseRef-Bussines-Mail-No-AI-Submission-1.0
+Effective September 26, 2026
+Copyright (c) 2026 Ahmad Faghih. All rights reserved except as granted below.
 
-Copyright (c) 2026 Ahmad Faghih
+1. Scope and definitions
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+"Licensor" means Ahmad Faghih. "Software" means the original code,
+documentation, and assets released with this license, including copies and
+modified or derivative versions containing that material. Independently
+developed software that contains none of that material is not covered.
+"AI Company" means a company or organization offering artificial intelligence
+models, assistants, agents, or a marketplace, directory, or developer program
+for integrations with those products.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. Permission
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Subject to the conditions below, you may view, download, clone, fork, study,
+learn from, run, copy, modify, and share the Software and derivative versions,
+including for personal, educational, internal business, or commercial use.
+You may connect your own instance to AI clients for your own use. This
+permission does not authorize the submissions prohibited by section 3.
+
+3. No submission to AI companies
+
+Without the Licensor's separate written permission, you must not submit,
+upload, register, offer, or provide the Software, a derivative version, or an
+integration or hosted endpoint based on it to any AI Company for review,
+approval, certification, onboarding, listing, publication, or distribution
+through that company's products, marketplaces, directories, or developer
+programs. This includes plugins, apps, connectors, skills, agents, and MCP
+servers, whether renamed, modified, commercial, or free. You must not authorize
+or arrange such a submission through another person or organization.
+
+Cloning, studying, changing, self-hosting, and connecting an instance for your
+own use are permitted; seeking a listing or distributing an integration
+through an AI Company is not. Sending individual mail data through an AI
+client during permitted use is not a submission of the Software.
+
+The Licensor retains the right to submit, publish, distribute, and separately
+license the Licensor's own work. An AI Company receiving a submission directly
+from the Licensor, or from a party with the Licensor's written authorization,
+may review that submission within the scope of that authorization.
+
+4. Notices and redistribution
+
+Keep this license, the copyright notice, and the no-submission restriction in
+all copies and substantial portions of the Software. Clearly identify your
+modifications and do not imply endorsement by the Licensor. Recipients must
+receive the same permissions and restrictions for the covered material; you
+may not relicense it to remove section 3. No trademark or brand rights are
+granted. This is a custom source-available license, not an OSI-approved
+open-source license.
+
+5. Other material and earlier releases
+
+Third-party dependencies and separately licensed material remain governed by
+their own licenses. This license does not replace their license terms.
+Versions previously released under the MIT License retain their original
+license; this license does not revoke permissions granted for those versions.
+This license applies to the version distributed with it and later versions
+that expressly adopt it.
+
+6. Termination
+
+Permission under this license ends automatically if you breach its
+conditions. Termination does not remove obligations to preserve notices or
+remedy a prohibited submission. Reinstatement requires the Licensor's written
+permission. No permission is granted for uses outside this license.
+
+7. No warranty or liability
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+NONINFRINGEMENT. TO THE EXTENT PERMITTED BY LAW, THE LICENSOR IS NOT LIABLE
+FOR CLAIMS, DAMAGES, OR OTHER LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
+
+8. Permission requests
+
+Request separate submission permission through the support link in the
+official repository: https://github.com/javadfaghih/bussines-mail-plugin-for-ai-agent.
+Never include mailbox credentials or private messages in a public issue.

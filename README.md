@@ -1,6 +1,6 @@
-# SMPT Mail Plugin
+# Bussines Mail SMTP/IMAP
 
-SMPT Mail Plugin by Ahmad Faghih (Softlian) is a remote Model Context Protocol (MCP) server and Codex plugin for an email account you control. It reads and searches an IMAP inbox and sends plain-text email through SMTP. The public endpoint is `https://mcp.softlian.com/mail`.
+Bussines Mail SMTP/IMAP by Ahmad Faghih (Softlian) is a remote Model Context Protocol (MCP) server and Codex plugin for an email account you control. It reads and searches an IMAP inbox and sends plain-text email through SMTP. The public endpoint is `https://mcp.softlian.com/mail`.
 
 ## Connect a mailbox
 
@@ -37,4 +37,8 @@ App passwords are encrypted with AES-256-GCM using `CREDENTIAL_KEY` before D1 st
 
 The plugin manifest is at `plugins/smpt-mail-plugin/.codex-plugin/plugin.json` and the repo marketplace is at `.agents/plugins/marketplace.json`. The OpenAI submission test plan is in `docs/submission.md`. Public publication and review require a live HTTPS endpoint, verified publisher identity, working legal and support URLs, and a reviewer mailbox with app-password access.
 
-Licensed under MIT. See `LICENSE`.
+## License
+
+This project uses the custom **Bussines Mail Source-Available License 1.0**. You may clone, study, use, modify, self-host, and share the code with its notices and restrictions. You may not submit the software, derivatives, plugins, or hosted MCP endpoints to any AI company for review, approval, listing, publication, or distribution without Ahmad Faghih's separate written permission. Connecting your own instance to an AI client for your own use is allowed.
+
+This is a source-available project, not an OSI-approved open-source project. Third-party dependencies keep their own licenses. Earlier MIT releases retain their original permissions. See [LICENSE](LICENSE) for the full terms.

@@ -38,7 +38,7 @@ async function account(): Promise<{ account: MailAccount; password: string }> {
 
 function createServer() {
   const server = new McpServer(
-    { name: "SMPT Mail Plugin", version: "0.1.0" },
+    { name: "Bussines Mail SMTP/IMAP", version: "0.2.0" },
     { instructions: "Read or search mail only on the user's request. Before sending, show the exact recipients, subject, and body and obtain the user's explicit approval. Never send automatically after reading mail." },
   );
 
@@ -153,7 +153,7 @@ const provider = new OAuthProvider({
     resource: workerEnv.MCP_BASE_URL,
     authorization_servers: [new URL(workerEnv.MCP_BASE_URL).origin],
     scopes_supported: ["mail:read", "mail:send"],
-    resource_name: "SMPT Mail Plugin",
+    resource_name: "Bussines Mail SMTP/IMAP",
   },
   defaultHandler: {
     fetch(request: Request, env: unknown) {

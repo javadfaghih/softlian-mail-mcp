@@ -1,6 +1,6 @@
 {
-  "name": "softlian-mail-mcp",
-  "version": "0.1.0",
+  "name": "bussines-mail-plugin-for-ai-agent",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -23,5 +23,6 @@
     "@types/nodemailer": "^7.0.4",
     "typescript": "^6.0.3",
     "wrangler": "^4.87.0"
-  }
+  },
+  "license": "SEE LICENSE IN LICENSE"
 }
