@@ -27,6 +27,8 @@ To run locally, make a copy of `wrangler.jsonc` without `routes`, set `MCP_BASE_
 
 To deploy, run `npx wrangler d1 migrations apply DB --remote`, `npx wrangler secret put CREDENTIAL_KEY`, then `npx wrangler deploy`. Set `OPENAI_CHALLENGE` only when the OpenAI developer portal supplies a domain verification value. The Worker requires Cloudflare account permissions for Workers, KV, D1, routes, and DNS.
 
+The production Cloudflare Worker is named `bussines-mail-ai-agent-plugin` (Bussines Mail AI Agent Plugin). Its canonical MCP endpoint is `https://mcp.softlian.com/mail`.
+
 ## Security and data
 
 App passwords are encrypted with AES-256-GCM using `CREDENTIAL_KEY` before D1 storage. The key is a Cloudflare Worker secret, separate from D1. Message contents are fetched on demand and are not persisted by this application. OAuth grants and short-lived authorization state are stored in KV. Daily send counters are deleted after 30 days, or immediately with the mailbox connection when `remove_mailbox` is used. The server verifies the IMAP and SMTP credentials before storing them, limits authorization attempts per source IP, validates form origin and state, and blocks raw IP and local hostnames in mail server fields. It accepts only implicit TLS connections on ports 993 and 465.

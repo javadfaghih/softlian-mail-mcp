@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "softlian-mail-mcp",
+  "name": "bussines-mail-ai-agent-plugin",
   "main": "src/index.ts",
   "compatibility_date": "2026-09-25",
   "compatibility_flags": ["global_fetch_strictly_public"],
