@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Read, search, and send email through your own IMAP and SMTP account.",
   "author": {
-    "name": "Softlian",
+    "name": "Ahmad Faghih",
     "url": "https://softlian.com"
   },
   "homepage": "https://mcp.softlian.com/",
@@ -14,7 +14,7 @@
     "displayName": "SMPT Mail Plugin",
     "shortDescription": "Read, find, and send your email.",
     "longDescription": "Connect an IMAP and SMTP mailbox with an app password. Read and search messages, and send email with your approval.",
-    "developerName": "Softlian",
+    "developerName": "Ahmad Faghih",
     "category": "Productivity",
     "capabilities": ["Read", "Write"],
     "websiteURL": "https://mcp.softlian.com/",

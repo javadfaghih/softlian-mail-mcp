@@ -1,6 +1,6 @@
 # SMPT Mail Plugin
 
-SMPT Mail Plugin by Softlian is a remote Model Context Protocol (MCP) server and Codex plugin for an email account you control. It reads and searches an IMAP inbox and sends plain-text email through SMTP. The public endpoint is intended to be `https://mcp.softlian.com/mail`.
+SMPT Mail Plugin by Ahmad Faghih (Softlian) is a remote Model Context Protocol (MCP) server and Codex plugin for an email account you control. It reads and searches an IMAP inbox and sends plain-text email through SMTP. The public endpoint is `https://mcp.softlian.com/mail`.
 
 ## Connect a mailbox
 
