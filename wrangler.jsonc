@@ -12,6 +12,9 @@
   "kv_namespaces": [
     { "binding": "OAUTH_KV", "id": "b8ac473ee43b4ea3a0a3f0d01ca0549a" }
   ],
+  "r2_buckets": [
+    { "binding": "DEMO_BUCKET", "bucket_name": "bussines-mail-demo" }
+  ],
   "d1_databases": [
     { "binding": "DB", "database_name": "softlian-mail", "database_id": "c4441134-f5f8-479e-9af5-d378d2649d95", "migrations_dir": "migrations" }
   ]

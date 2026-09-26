@@ -129,6 +129,19 @@ async function finishAuthorization(request: Request, env: Env): Promise<Response
 
 export async function handlePublic(request: Request, env: Env): Promise<Response> {
   const path = new URL(request.url).pathname;
+  if (path === "/demo/review.mp4" && request.method === "GET") {
+    const video = await env.DEMO_BUCKET.get("review.mp4");
+    if (!video) return new Response("Demo video unavailable", { status: 404 });
+    return new Response(video.body, {
+      headers: {
+        "content-type": "video/mp4",
+        "content-length": String(video.size),
+        "cache-control": "public, max-age=3600",
+        "content-disposition": "inline; filename=business-mail-demo.mp4",
+        "x-content-type-options": "nosniff",
+      },
+    });
+  }
   if (path === "/.well-known/openai-apps-challenge") {
     return env.OPENAI_CHALLENGE ? new Response(env.OPENAI_CHALLENGE, { headers: { "content-type": "text/plain" } }) : new Response("Not configured", { status: 404 });
   }
