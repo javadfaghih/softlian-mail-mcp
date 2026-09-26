@@ -3,6 +3,7 @@ import type { Env } from "./env";
 import { encryptPassword } from "./crypto";
 import { verifyMailbox, verifySender } from "./mail";
 import { connectionFailureMessage } from "./connection-errors";
+import { authorizationCompletePage } from "./auth-completion";
 
 const stateCookie = "__Host-softlian-mail-state";
 
@@ -119,9 +120,11 @@ async function finishAuthorization(request: Request, env: Env): Promise<Response
     scope: authRequest.scope,
     props: { userId, scopes: authRequest.scope },
   });
-  const headers = new Headers({ location: redirectTo, "cache-control": "no-store" });
-  headers.set("set-cookie", `${stateCookie}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax`);
-  return new Response(null, { status: 302, headers });
+  // A cross-origin 302 in the form submission can be blocked by the form page's CSP.
+  // Complete the POST first, then navigate from this page to the OAuth client.
+  const response = authorizationCompletePage(redirectTo);
+  response.headers.set("set-cookie", `${stateCookie}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax`);
+  return response;
 }
 
 export async function handlePublic(request: Request, env: Env): Promise<Response> {
