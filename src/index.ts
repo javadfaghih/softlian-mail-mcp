@@ -9,6 +9,7 @@ import type { Env, MailAccount } from "./env";
 import { getMail, listMail, searchMail, sendMail } from "./mail";
 
 const workerEnv = bindings as unknown as Env;
+const mcpRoute = new URL(workerEnv.MCP_BASE_URL).pathname;
 
 function result(value: unknown) {
   return { content: [{ type: "text" as const, text: JSON.stringify(value) }], structuredContent: value as Record<string, unknown> };
@@ -139,7 +140,7 @@ function createServer() {
   return server;
 }
 
-const mcpHandler = createMcpHandler(createServer);
+const mcpHandler = createMcpHandler(createServer, { route: mcpRoute });
 
 const provider = new OAuthProvider({
   authorizeEndpoint: "/authorize",
@@ -147,7 +148,7 @@ const provider = new OAuthProvider({
   clientRegistrationEndpoint: "/oauth/register",
   clientIdMetadataDocumentEnabled: true,
   scopesSupported: ["mail:read", "mail:send"],
-  apiRoute: "/mail",
+  apiRoute: mcpRoute,
   apiHandler: { fetch(request: Request, env: unknown, ctx: ExecutionContext) { return mcpHandler(request, env, ctx); } },
   resourceMetadata: {
     resource: workerEnv.MCP_BASE_URL,
