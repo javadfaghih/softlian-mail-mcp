@@ -2,6 +2,7 @@ import type { AuthRequest } from "@cloudflare/workers-oauth-provider";
 import type { Env } from "./env";
 import { encryptPassword } from "./crypto";
 import { verifyMailbox, verifySender } from "./mail";
+import { connectionFailureMessage } from "./connection-errors";
 
 const stateCookie = "__Host-softlian-mail-state";
 
@@ -96,13 +97,15 @@ async function finishAuthorization(request: Request, env: Env): Promise<Response
     return connectPage(token, client.clientName ?? "An MCP client", "Check the email address, hostnames, and app password.");
   }
   if (!await withinAttemptLimit(request, env)) return new Response("Too many attempts. Try again later.", { status: 429 });
-  try {
-    await Promise.all([
-      verifyMailbox({ email, imap_host: imapHost }, password),
-      verifySender({ email, smtp_host: smtpHost }, password),
-    ]);
-  } catch {
-    return connectPage(token, client.clientName ?? "An MCP client", "The email provider rejected the connection. Check IMAP, SMTP, and the app password.");
+  const checks = await Promise.allSettled([
+    verifyMailbox({ email, imap_host: imapHost }, password),
+    verifySender({ email, smtp_host: smtpHost }, password),
+  ]);
+  const failures = checks.flatMap((result, index) => result.status === "rejected"
+    ? [connectionFailureMessage(index === 0 ? "IMAP" : "SMTP", result.reason)]
+    : []);
+  if (failures.length) {
+    return connectPage(token, client.clientName ?? "An MCP client", failures.join(" "));
   }
   const userId = await userIdFor(email, imapHost);
   const encrypted = await encryptPassword(password, userId, env.CREDENTIAL_KEY);

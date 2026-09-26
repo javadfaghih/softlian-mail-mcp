@@ -1,6 +1,6 @@
 import { ImapFlow } from "imapflow";
 import type { FetchMessageObject } from "imapflow";
-import nodemailer from "nodemailer";
+import { createSmtpTransport } from "./smtp";
 import PostalMime from "postal-mime";
 import type { MailAccount } from "./env";
 
@@ -68,18 +68,7 @@ export async function verifyMailbox(account: Pick<MailAccount, "email" | "imap_h
 }
 
 export async function verifySender(account: Pick<MailAccount, "email" | "smtp_host">, password: string): Promise<void> {
-  const transport = nodemailer.createTransport({
-    host: account.smtp_host,
-    port: 465,
-    secure: true,
-    auth: { user: account.email, pass: password },
-    disableFileAccess: true,
-    disableUrlAccess: true,
-    logger: false,
-    connectionTimeout: 10_000,
-    greetingTimeout: 10_000,
-    socketTimeout: 20_000,
-  });
+  const transport = createSmtpTransport(account.smtp_host, { user: account.email, pass: password });
   try {
     await transport.verify();
   } finally {
@@ -143,18 +132,7 @@ export async function sendMail(
   password: string,
   input: { to: string[]; subject: string; text: string },
 ): Promise<{ messageId: string; accepted: string[]; rejected: string[] }> {
-  const transport = nodemailer.createTransport({
-    host: account.smtp_host,
-    port: 465,
-    secure: true,
-    auth: { user: account.email, pass: password },
-    disableFileAccess: true,
-    disableUrlAccess: true,
-    logger: false,
-    connectionTimeout: 10_000,
-    greetingTimeout: 10_000,
-    socketTimeout: 20_000,
-  });
+  const transport = createSmtpTransport(account.smtp_host, { user: account.email, pass: password });
   try {
     const result = await transport.sendMail({ from: account.email, to: input.to, subject: input.subject, text: input.text });
     return { messageId: result.messageId, accepted: result.accepted.map(String), rejected: result.rejected.map(String) };
