@@ -16,7 +16,9 @@ function page(title: string, content: string): Response {
     headers: {
       "content-type": "text/html; charset=utf-8",
       "cache-control": "no-store",
-      "referrer-policy": "no-referrer",
+      // Keep the Origin on same-origin form POSTs; no-referrer makes it null.
+      // Referrers are still omitted when navigating to another origin.
+      "referrer-policy": "same-origin",
       "content-security-policy": "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'",
       "x-content-type-options": "nosniff",
     },
